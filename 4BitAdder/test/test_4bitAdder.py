@@ -39,13 +39,13 @@ async def Adder4_tester_function(dut):
                 dut.io_B.value = B
                 await RisingEdge(dut.clk)
                 expected_Sum, expected_Cout = Bit4Adder_python_model(A, B, 0)
-                # assert dut.io_Sum.value == expected_sum, f"output sum was incorrect on the {i}th cycle"
-                # assert dut.io_Cout.value == expected_cout, f"output cout was incorrect on the {i}th cycle"
+                assert dut.io_Sum.value == expected_Sum, f"output sum was incorrect on the {i}th cycle"
+                assert dut.io_Cout.value == expected_Cout, f"output cout was incorrect on the {i}th cycle"
                     
 
-    # await RisingEdge(dut.clk)
-    # assert dut.io_sum.value == expected_sum, f"output sum was incorrect on the last cycle"
-    # assert dut.io_cout.value == expected_cout, f"output cout was incorrect on the last cycle"
+    await RisingEdge(dut.clk)
+    assert dut.io_Sum.value == expected_Sum, f"output sum was incorrect on the last cycle"
+    assert dut.io_Cout.value == expected_Cout, f"output cout was incorrect on the last cycle"
 
 def adder4_test_runner():
     hdl_toplevel_lang = os.getenv("HDL_TOPLEVEL_LANG", "verilog")
