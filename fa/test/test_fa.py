@@ -1,11 +1,11 @@
-import sys
-
 import cocotb
 from cocotb.clock import Clock
 from cocotb.triggers import Timer
 from cocotb.runner import get_runner
 from cocotb.triggers import RisingEdge
 from cocotb.types import LogicArray
+
+import sys
 sys.path.insert(0, '../model')
 from fa_python_model import *
 

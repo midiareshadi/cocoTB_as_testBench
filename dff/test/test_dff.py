@@ -1,7 +1,3 @@
-import os
-import random
-from pathlib import Path
-
 import cocotb
 from cocotb.clock import Clock
 from cocotb.triggers import Timer
@@ -9,11 +5,16 @@ from cocotb.runner import get_runner
 from cocotb.triggers import RisingEdge
 from cocotb.types import LogicArray
 
+import sys
+sys.path.insert(0, '../model')
+from dff_python_model import *
+
 async def reset_dut(reset_n, duration_ns):
     reset_n.value = 1
     await Timer(duration_ns, units="ns")
     reset_n.value = 0
     reset_n._log.debug("*** Reset complete ***")
+
 
 @cocotb.test()
 async def dff_tester_function(dut):
@@ -26,7 +27,6 @@ async def dff_tester_function(dut):
     reset_n = dut.reset
 
     reset_thread = cocotb.start_soon(reset_dut(reset_n, duration_ns=15))
-
     
     dut.io_d.value = 0
 
@@ -35,16 +35,17 @@ async def dff_tester_function(dut):
     cocotb.start_soon(clock.start(start_high=False))
 
     await RisingEdge(dut.clk)
-    expected_val = 0
+    expected_val = python_dff_model(dut.io_d.value)
     for i in range(5):
         for j in range(2):
             val = j
             dut.io_d.value = val 
             await RisingEdge(dut.clk)
             assert dut.io_q.value == expected_val, f"output q was incorrect on the {i}th cycle"
-            expected_val = val  
+            expected_val =  python_dff_model(dut.io_d.value)  
 
     await RisingEdge(dut.clk)
+    expected_val =  python_dff_model(dut.io_d.value)
     assert dut.io_q.value == expected_val, "output q was incorrect on the last cycle"
 
 def dff_test_runner():
