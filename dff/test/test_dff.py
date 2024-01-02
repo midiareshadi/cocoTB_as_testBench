@@ -7,7 +7,7 @@ from cocotb.types import LogicArray
 
 import sys
 sys.path.insert(0, '../model')
-from dff_python_model import *
+from python_model import *
 
 async def reset_dut(reset_n, duration_ns):
     reset_n.value = 1
