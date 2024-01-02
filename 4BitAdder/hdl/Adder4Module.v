@@ -9,7 +9,7 @@ module FullAdderModule(
   assign io_cout = io_a & io_b | io_b & io_cin | io_a & io_cin; // @[FullAdder.scala 19:46]
 endmodule
 module Adder4Module(
-  input        clock,
+  input        clk,
   input        reset,
   input  [3:0] io_A,
   input  [3:0] io_B,
@@ -80,4 +80,11 @@ module Adder4Module(
   assign Adder3_io_a = io_A[3]; // @[Adder4Bits.scala 36:22]
   assign Adder3_io_b = io_B[3]; // @[Adder4Bits.scala 37:22]
   assign Adder3_io_cin = Adder2_io_cout; // @[Adder4Bits.scala 38:17]
+
+  // Dump VCD
+  initial begin
+    $dumpfile("VCD_File.vcd");
+    $dumpvars;
+  end
+
 endmodule

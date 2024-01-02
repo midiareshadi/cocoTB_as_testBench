@@ -2,7 +2,6 @@
 
 TOPLEVEL_LANG ?= verilog
 
-
 VERILOG_SOURCES = $(shell pwd) ../hdl/fa.v
 
 MODULE = test_fa

@@ -7,7 +7,7 @@ from cocotb.types import LogicArray
 
 import sys
 sys.path.insert(0, '../model')
-from Bit4Adder_python_model import *
+from python_model import *
 
 
 async def reset_dut(reset_n, duration_ns):
@@ -38,9 +38,9 @@ async def Adder4_tester_function(dut):
                 dut.io_A.value = A
                 dut.io_B.value = B
                 await RisingEdge(dut.clk)
-                # expected_sum, expected_cout = python_FA_model (a,b,cin)
-                # assert dut.io_sum.value == expected_sum, f"output sum was incorrect on the {i}th cycle"
-                # assert dut.io_cout.value == expected_cout, f"output cout was incorrect on the {i}th cycle"
+                expected_Sum, expected_Cout = Bit4Adder_python_model(A, B, 0)
+                # assert dut.io_Sum.value == expected_sum, f"output sum was incorrect on the {i}th cycle"
+                # assert dut.io_Cout.value == expected_cout, f"output cout was incorrect on the {i}th cycle"
                     
 
     # await RisingEdge(dut.clk)
