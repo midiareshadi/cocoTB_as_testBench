@@ -20,10 +20,6 @@ async def reset_dut(reset_n, duration_ns):
 @cocotb.test()
 async def fa_tester_function(dut):
 
-    # initial = (LogicArray("U"))
-    # assert LogicArray(dut.io_sum.value) == initial
-    # assert LogicArray(dut.io_cout.value) == initial
-
     reset_n = dut.reset
     reset_thread = cocotb.start_soon(reset_dut(reset_n, duration_ns=15))
 
