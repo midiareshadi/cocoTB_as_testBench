@@ -1,0 +1,6 @@
+<testsuites name="results">
+  <testsuite name="all" package="all">
+    <property name="random_seed" value="1704282667" />
+    <testcase name="Adder4_tester_function" classname="test_4bitAdder" file="/home/cocoTB_as_testBench/4BitAdder/test/test_4bitAdder.py" lineno="20" time="0.2891252040863037" sim_time_ns="40975.001" ratio_time="141720.61245746317" />
+  </testsuite>
+</testsuites>

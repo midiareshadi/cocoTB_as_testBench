@@ -9,7 +9,7 @@ def Bit4Adder_python_model(A: int, B: int, Carry_in: int) -> tuple[int, int]:
     Carry_out = 0
 
     # Loop through each bit and perform the addition
-    for i in range(3, -1, -1):
+    for i in reversed(range(4)):
         # Calculate the sum of the bits
         bit_sum = int(A[i]) + int(B[i]) + Carry_out
 
